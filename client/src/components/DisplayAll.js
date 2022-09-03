@@ -65,7 +65,7 @@ const DisplayAll = () => {
                             })}
                         </tbody>
                     </table>
-                    <Link to="/new">CREATER</Link>
+                    <Link to="/new">CREATE</Link>
                 </div>
             </div>
         </div>
