@@ -4,49 +4,68 @@ import "../App.css";
 import { Link } from "react-router-dom";
 
 const DisplayAll = () => {
-    const [allPets, setAllPets] = useState([]);
+    const [allNotables, setAllNotables] = useState([]);
     useEffect(() => {
         axios
-            .get("http://localhost:8000/api/pet")
+            .get("http://localhost:8000/api/notable")
             .then((response) => {
                 console.log(response.data);
-                setAllPets(response.data);
+                setAllNotables(response.data);
             })
             .catch((err) => {
                 console.log(err.response);
             });
-    }, []);    
-    return (
+    }, []);
+    const sortNotables = (sortBy) => {
+        console.log('sorting..')
+        const sorted = [...allNotables]
+        sorted.sort((a, b) => {
+                let nameA = a.name.toUpperCase(); // ignore upper and lowercase
+                let nameB = b.name.toUpperCase(); // ignore upper and lowercase
+            if (sortBy ==="organization") {
+                nameA = a.organization.toUpperCase(); // ignore upper and lowercase
+                nameB = b.organization.toUpperCase(); // ignore upper and lowercase
+            }
+            if (nameA < nameB) {
+                return -1;
+            }
+            if (nameA > nameB) {
+                return 1;
+            }
+            // names must be equal
+            return 0;
+        });
+        setAllNotables(sorted)
+    }
+        return (
         <div class="container">
             <div class="row">
-                <div className="col-6" style={{marginLeft: "280px"}}>
-                    <h3 className="purple-text">These pets are looking for a good home</h3>
+                <div className="col-8 mx-auto">
+                    <h4 className="text-primary">"National Pan-Hellenic Council Contributors to the Culture"</h4>
                     <table className="table">
                         <thead>
                             <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Type</th>
-                                <th scope="col">Description</th>
+                                <th onClick={() => sortNotables("name")} scope="col">Name</th>
+                                <th onClick={() => sortNotables("organization")} scope="col">Organization</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {allPets.map((pet, index) => {
+                            {allNotables.map((notable, index) => {
                                 return (
-                                <tr key={pet.id}>
-                                    <td>{pet.name}</td>
-                                    <td>{pet.type}</td>
-                                    <td>{pet.description}</td>
+                                <tr key={notable.id}>
+                                    <td><a href={notable.biography} rel="noreferrer" target ="_blank">{notable.name}</a></td>
+                                    <td>{notable.organization}</td>
                                     <td>
-                                        <Link to={`/show/${pet._id}`}>Details |</Link>
-                                        <Link to={`/edit/${pet._id}`}> Edit</Link>
+                                        <Link to={`/show/${notable._id}`}>Details |</Link>
+                                        <Link to={`/edit/${notable._id}`}> Edit</Link>
                                     </td>
                                 </tr>
                                 );
                             })}
                         </tbody>
                     </table>
-                    <Link to="/new">Add a pet to the shelter</Link>
+                    <Link to="/new">CREATE</Link>
                 </div>
             </div>
         </div>

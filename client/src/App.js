@@ -1,20 +1,20 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DisplayAll from "./components/DisplayAll";
-import PetForm from "./components/PetForm";
-import EditPet from './components/EditPet';
-import OnePet from './components/OnePet';
+import NotableForm from "./components/NotableForm";
+import EditNotable from './components/EditNotable';
+import OneNotable from './components/OneNotable';
 
 function App() {
   return (
     <div className="App">
-      <h1>Pet Shelter</h1>
+      <h1 className="text-primary">DIVINE 9 NOTABLES</h1>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<DisplayAll />} />
-          <Route path="/new" element={<PetForm />} />
-          <Route path="/edit/:id" element={<EditPet />} />
-          <Route path="/show/:id" element={<OnePet />} />
+          <Route path="/new" element={<NotableForm />} />
+          <Route path="/edit/:id" element={<EditNotable />} />
+          <Route path="/show/:id" element={<OneNotable />} />
         </Routes>
       </BrowserRouter>
     </div>

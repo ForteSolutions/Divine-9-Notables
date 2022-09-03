@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const dbName = "pets";
+const dbName = "notables";
 
 mongoose
     .connect(`mongodb://localhost/${dbName}`, {
