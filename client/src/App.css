@@ -40,3 +40,9 @@
 .purple-text {
   color: purple;
 }
+
+.sort-icon {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}

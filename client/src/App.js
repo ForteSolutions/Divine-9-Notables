@@ -8,7 +8,7 @@ import OneNotable from './components/OneNotable';
 function App() {
   return (
     <div className="App">
-      <h1 className="text-primary">DIVINE 9 NOTABLES</h1>
+      <h1 className="text-primary">DIVINE NINE NOTABLES</h1>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<DisplayAll />} />
